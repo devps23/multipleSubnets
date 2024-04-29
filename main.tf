@@ -10,7 +10,7 @@ resource "aws_subnet" "subnet" {
   availability_zone     = "us-east-1a"
 
   tags = {
-    Name = "zone1"
+    Name = "zone"
   }
 }
 resource "aws_vpc_peering_connection" "peer" {
