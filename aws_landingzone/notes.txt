@@ -43,3 +43,9 @@ outbound rules: outbound rules control outgoing traffic
 ===============
 Outbound traffic rules apply only if the DB instance acts as a client.
 For example, outbound traffic rules apply to an Oracle DB instance with outbound database......
+
+connect with mutli-subnets?
+==========================
+create two subnets if one subnet fails another will clear the trafic(connect)
+"visual subnet calculator" : to calculate subnets.
+

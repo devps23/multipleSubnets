@@ -7,4 +7,9 @@ module "vpc" {
   default_vpc_id = var.default_vpc_id
   default_route_table_id = var.default_route_table_id
   default_cidr_block = var.default_cidr_block
+  frontend_subnet = var.frontend-subnet
+  backend_subnet = var.backend-subnet
+  mysql_subnet = var.mysql-subnet
+  availability_zone = var.availability_zone
+
 }

@@ -4,13 +4,23 @@ resource "aws_vpc" "vpc" {
     Name = "${var.vpc_name} - ${var.env}"
   }
 }
-resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block       = var.cidr_block
-  availability_zone     = var.available_zone
+//resource "aws_subnet" "subnet" {
+//  vpc_id     = aws_vpc.vpc.id
+//  cidr_block       = var.cidr_block
+//  availability_zone     = var.available_zone
+//
+//  tags = {
+//    Name = "zone"
+//  }
+//}
+resource "aws_subnet" "frontend" {
+  count                = length(var.frontend_subnet)
+  vpc_id               = aws_vpc.vpc.id
+  cidr_block           = var.cidr_block[count.index]
+  availability_zone    = var.availability_zone[count.index]
 
   tags = {
-    Name = "zone"
+    Name = "frontend-${var.env}-subnet-${var.frontend_subnet[count.index]}"
   }
 }
 //peer connection between two vpc's
