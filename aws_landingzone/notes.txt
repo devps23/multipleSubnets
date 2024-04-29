@@ -1,0 +1,45 @@
+Landing zone:
+to create a single/mutliple accounts in aws
+
+VPC:Amazon VPC enables you to build a virtual network in the AWS cloud
+----
+- no VPNs, hardware, or physical datacenters required
+subnet:
+=======
+A subnet is a range of IP addresses in your VPC. You launch AWS resources,
+such as Amazon EC2 instances, into your subnets.
+
+choose one availability zone i.e Data center(create a network in Datacenter)
+here subnet is a server
+launch instances inside the server
+
+In companies , through VPN connect DataCenter , there is a bridge between datacenter and aws(asw Direct connect)
+bastion host:to connect to server,from that server to connect private hosts.
+bastillion is a tool----help to trzcking
+
+* login to instances: ssh private ip----unable to connect
+* every vpc is a island
+to connect between two servers need peer connection to construct a road....
+* to clear traffic both sides of the server need routing
+To create customized vpc:
+========================
+1. create VPC
+2.create subnet
+to connect between two servers need peerconnection(to construct road between them)
+to clear traffic between two servers need to connect routetables
+add servers both sides and add peerconnection both sides
+In routing table peer connection is same on both sides of routing.
+
+Secutiry group:
+===============
+* A security group controls the traffic that is allowed to reach and leave the resources
+that it is associated with
+* associate a security group with an EC2 instance, it controls the inbound and outbound traffic for the instance.
+When you create a VPC, it comes with a default security group.
+inbound rules: Inbound traffic rules control incoming traffic to the instances(coming to your EC2 instances).
+==============
+* allows SSH traffic to the instances in subnet A from the specified address range(inbound)
+outbound rules: outbound rules control outgoing traffic
+===============
+Outbound traffic rules apply only if the DB instance acts as a client.
+For example, outbound traffic rules apply to an Oracle DB instance with outbound database......
