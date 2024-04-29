@@ -1,3 +1,3 @@
 bucket = "bucketinfo23"
-key    = "test/dev/file"
+key    = "test"
 region = "us-east-1"
