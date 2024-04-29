@@ -4,26 +4,28 @@ resource "aws_vpc" "vpc" {
     Name = "${var.vpc_name} - ${var.env}"
   }
 }
-//resource "aws_subnet" "subnet" {
-//  vpc_id     = aws_vpc.vpc.id
-//  cidr_block       = "10.10.0.0/24"
-//  availability_zone     = "us-east-1a"
-//
-//  tags = {
-//    Name = "zone"
-//  }
-//}
-//resource "aws_vpc_peering_connection" "peer" {
-//  peer_vpc_id   = "vpc-02a94ee8944923438"
-//  vpc_id        = aws_vpc.vpc.id
-//  auto_accept   = true
-//
-//  tags = {
-//    Name = "peer-dev"
-//  }
-//}
-//resource "aws_route" "r" {
-//  route_table_id            = "rtb-0a2e9ff93585c96fd"
-//  destination_cidr_block    = "10.10.0.0/24"
-//  vpc_peering_connection_id = aws_vpc_peering_connection.peer.
-//}
+resource "aws_subnet" "subnet" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block       = var.cidr_block
+  availability_zone     = var.available_zone
+
+  tags = {
+    Name = "zone"
+  }
+}
+//peer connection between two vpc's
+resource "aws_vpc_peering_connection" "peer" {
+  peer_vpc_id   = var.default_vpc_id
+  vpc_id        = aws_vpc.vpc.id
+  auto_accept   = true
+
+  tags = {
+    Name = "peer-dev"
+  }
+}
+//routing on both sides with customized peer connection
+resource "aws_route" "r" {
+  route_table_id            =  var.default_route_table_id
+  destination_cidr_block    = var.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+}

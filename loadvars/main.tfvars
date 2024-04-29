@@ -1,3 +1,6 @@
 cidr_block = "10.10.0.0/24"
 vpc_name = "vpc-aut"
 env = "dev"
+available_zone = "us-east-1a"
+default_vpc_id = "vpc-02a94ee8944923438"
+default_route_table_id = "rtb-0a2e9ff93585c96fd"
