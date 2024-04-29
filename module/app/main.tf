@@ -16,7 +16,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_subnet" "frontend" {
   count                = length(var.frontend_subnet)
   vpc_id               = aws_vpc.vpc.id
-  cidr_block           = var.cidr_block[count.index]
+  cidr_block           = var.frontend_subnet[count.index]
   availability_zone    = var.availability_zone[count.index]
 
   tags = {
