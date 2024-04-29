@@ -20,7 +20,7 @@ resource "aws_subnet" "frontend" {
   availability_zone    = var.availability_zone[count.index]
 
   tags = {
-    Name = "${var.env}-frontend-subnet-${count.index+1}"
+    Name = "${var.env}-frontend-subnet-${count.index}"
   }
 }
 //peer connection between two vpc's
