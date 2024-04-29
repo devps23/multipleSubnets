@@ -25,5 +25,5 @@
 resource "aws_route" "r" {
   route_table_id            = "rtb-0a2e9ff93585c96fd"
   destination_cidr_block    = "10.10.0.0/24"
-  vpc_peering_connection_id = "pcx-00effd337b28a9d07"
+  vpc_peering_connection_id = "pcx-054bf2b3e335109b2"
 }
