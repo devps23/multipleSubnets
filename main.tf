@@ -13,12 +13,12 @@ resource "aws_subnet" "subnet" {
     Name = "zone"
   }
 }
-//resource "aws_vpc_peering_connection" "peer" {
-//  peer_vpc_id   = "vpc-02a94ee8944923438"
-//  vpc_id        = aws_vpc.vpc.id
-//  auto_accept   = true
-//
-//  tags = {
-//    Name = "peer-dev"
-//  }
-//}
+resource "aws_vpc_peering_connection" "peer" {
+  peer_vpc_id   = "vpc-02a94ee8944923438"
+  vpc_id        = aws_vpc.vpc.id
+  auto_accept   = true
+
+  tags = {
+    Name = "peer-dev"
+  }
+}
