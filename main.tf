@@ -6,4 +6,5 @@ module "vpc" {
   available_zone= var.available_zone
   default_vpc_id = var.default_vpc_id
   default_route_table_id = var.default_route_table_id
+  default_cidr_block = var.default_cidr_block
 }
