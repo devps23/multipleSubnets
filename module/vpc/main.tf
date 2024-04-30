@@ -77,11 +77,11 @@ resource "aws_route_table" "frontend" {
   count = length(var.frontend_subnet)
   vpc_id = aws_vpc.vpc.id
   route {
-    cidr_block = var.default_cidr_block[count.index]
-    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id[count.index]
+    cidr_block = var.default_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
   tags = {
-    Name = "route_table-${var.env}"
+    Name = "route_table-${var.env}-${count.index}"
   }
 }
 
