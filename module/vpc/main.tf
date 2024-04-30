@@ -80,6 +80,10 @@ resource "aws_route_table" "frontend" {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
   tags = {
     Name = "frontend-rt-${var.env}-${count.index}"
   }
@@ -90,6 +94,10 @@ resource "aws_route_table" "backend" {
   route {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+  }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
     Name = "backend-rt-${var.env}-${count.index}"
@@ -103,6 +111,10 @@ resource "aws_route_table" "mysql" {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
   tags = {
     Name = "mysql-rt-${var.env}-${count.index}"
   }
@@ -114,10 +126,31 @@ resource "aws_route_table" "public" {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
   tags = {
     Name = "public-rt-${var.env}-${count.index}"
   }
 }
+resource "aws_route_table_association" "frontend" {
+  count          = length(var.frontend_subnet)
+  subnet_id      = aws_subnet.frontend.id
+  route_table_id = aws_route_table.frontend.id
+  tags = {
+    Name = "frontend-ass-${var.env}-${count.index}"
+  }
+}
+resource "aws_route_table_association" "backend" {
+  count          = length(var.backend_subnet)
+  subnet_id      = aws_subnet.backend.id
+  route_table_id = aws_route_table.backend.id
+  tags = {
+    Name = "backend-ass-${var.env}-${count.index}"
+  }
+}
+
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id
