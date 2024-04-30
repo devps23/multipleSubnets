@@ -1,4 +1,5 @@
 variable "cidr_block" {}
+variable "subnet_cidr_block"{}
 variable "vpc_name" {}
 variable "env" {}
 variable "available_zone"{}
@@ -9,3 +10,4 @@ variable "frontend-subnet"{}
 variable "backend-subnet"{}
 variable "mysql-subnet"{}
 variable "availability_zone" {}
+variable "public_subnets"{}
