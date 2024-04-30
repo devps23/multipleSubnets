@@ -1,5 +1,5 @@
 variable "cidr_block"{}
-variable "subnet_cidr_block"{}
+//variable "subnet_cidr_block"{}
 variable "env" {}
 variable "vpc_name"{}
 variable "available_zone" {}

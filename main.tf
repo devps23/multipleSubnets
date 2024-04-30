@@ -1,6 +1,7 @@
 module "vpc" {
-  source = "./module/app"
+  source = "./module/vpc"
   cidr_block = var.cidr_block
+//  subnet_cidr_block = var.subnet_cidr_block
   vpc_name = var.vpc_name
   env = var.env
   available_zone= var.available_zone
