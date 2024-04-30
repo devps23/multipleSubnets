@@ -9,3 +9,4 @@ variable "frontend_subnet" {}
 variable "backend_subnet" {}
 variable "mysql_subnet"{}
 variable "availability_zone" {}
+variable "public_subnets" {}

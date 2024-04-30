@@ -1,8 +1,17 @@
+what if VM goes down?
+If VM goes down then,what is the availability of application:(single server for each component)
+==============================================================
+site disaster: or hardware can go down
+==============
+** if one server goes down will use another server....
+abc:["10.0.0.0/24","10.0.0.0/24"]
+the above have two subnet servers
 Landing zone:
 to create a single/mutliple accounts in aws
-
+site disaster:
+===============
 VPC:Amazon VPC enables you to build a virtual network in the AWS cloud
-----
+----------------------------------------------------------------------
 - no VPNs, hardware, or physical datacenters required
 subnet:
 =======
@@ -48,4 +57,57 @@ connect with mutli-subnets?
 ==========================
 create two subnets if one subnet fails another will clear the trafic(connect)
 "visual subnet calculator" : to calculate subnets.
+module to module communication:
+================================
+first module should expose the info
+second module will read the info
+how first module will expose the info ?
+with the help of "outputs" is not for print, expose the info,not print on the screen.
+
+Session:38
+==========
+In organization , we don't have direct access to the internet? how to run our application without internet?
+In Lab how we can do?
+How do we get the internet?
+there is  a internet,to connect with multiple systems need  a router,through router we can connect
+* An Internet Gateway (IGW) is an AWS component that provides a path for network traffic to travel between a
+Virtual Private Cloud (VPC) and the public internet. It acts as a bridge between the two networks,
+enabling inbound and outbound connections from resources within the VPC.
+Network traffic is the amount of data moving across a computer network at any given time
+* Internet gateway provides network to subnets(frontend,backend,sql).
+once subnets directly connects to Internet gateway it will be a public ip address(like launching an instance in ec2 aws).
+so there is no security everyone will access directly.
+public subnets should have internet gateway....
+public subnets should have a route table......
+* so to avoid this "to create NAT Gateway"(it is a wifi router)  has one public ip address and connect to multiple subnets
+to split traffic between multiple devices.
+* A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC
+* NAT gateway is a device
+* Public NAT gateways allow servers in your data center to access the Internet.
+so NAT gateway has a public ip address , so connect to public ip address and from public ip address to
+connect this traffic to multiple subnets.
+two natgateways connect to two different subnets
+In organisations how to connect the subnets to internet?
+========================================================
+create a network account---->in that there is a nat gateway connection (wifi router)
+to pass  traffic to "translate gateway , through this gateway to allow traffic to multiple subnets
+firewall:
+=========
+A firewall is a network security device that monitors incoming and outgoing network traffic and decides
+whether to allow or block specific traffic based on a defined set of security rules.
+
+* InternetGateway connects(----->) to firewall connects(-------->) to NAT gateway connects(------->) to multiple subnets.
+* In big organizations there is one Data centers ,this data centers already connected to the internet
+* DataCenters connect to Direct connects connect to NetWork account (Nat Gateway) connects directly to multiple subnets....
+
+
+1. create an Internet gateway
+2. create an natgateway(wifi router)
+3.create a public subnets(subnets)
+4.association between public subnets and natgateway(connection)
+
+private subnet ----nat gateway
+public subnets-----internet gateway
+default route is same for all subnets.
+for each subnets there is one route table to create
 
