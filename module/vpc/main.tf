@@ -74,7 +74,7 @@ resource "aws_internet_gateway" "igw" {
 }
 //create route table(NAT Gateway)
 resource "aws_route_table" "frontend" {
-  count = length(var.frontend_subnet.index)
+  count = length(var.frontend_subnet)
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = var.default_cidr_block[count.index]
