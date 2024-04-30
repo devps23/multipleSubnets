@@ -64,6 +64,14 @@ resource "aws_vpc_peering_connection" "peer" {
     Name = "peer-dev"
   }
 }
+//create Internet Gateway
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "igw-${var.env}"
+  }
+}
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id
