@@ -72,6 +72,19 @@ resource "aws_internet_gateway" "igw" {
     Name = "igw-${var.env}"
   }
 }
+//create route table(NAT Gateway)
+resource "aws_route_table" "frontend" {
+  count = length(count.index)
+  vpc_id = aws_vpc.vpc.id
+  route {
+    cidr_block = var.default_cidr_block[count.index]
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id[count.index]
+  }
+  tags = {
+    Name = "route_table-${var.env}"
+  }
+}
+
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id

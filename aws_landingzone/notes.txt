@@ -110,4 +110,12 @@ private subnet ----nat gateway
 public subnets-----internet gateway
 default route is same for all subnets.
 for each subnets there is one route table to create
+to connect route_table(NAT) to multiple subnets,need association between nat gateway and subnets
+
+
+1.create public subnets
+2.create internet gateway
+3.peer connection for all subnets
+4.routing for all subnets
+5.
 
