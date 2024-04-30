@@ -136,16 +136,16 @@ resource "aws_route_table" "public" {
 }
 resource "aws_route_table_association" "frontend" {
   count          = length(var.frontend_subnet)
-  subnet_id      = aws_subnet.frontend.id
-  route_table_id = aws_route_table.frontend.id
+  subnet_id      = aws_subnet.frontend[count.index].id
+  route_table_id = aws_route_table.frontend[count.index].id
   tags = {
     Name = "frontend-ass-${var.env}-${count.index}"
   }
 }
 resource "aws_route_table_association" "backend" {
   count          = length(var.backend_subnet)
-  subnet_id      = aws_subnet.backend.id
-  route_table_id = aws_route_table.backend.id
+  subnet_id      = aws_subnet.backend[count.index].id
+  route_table_id = aws_route_table.backend[count.index].id
   tags = {
     Name = "backend-ass-${var.env}-${count.index}"
   }
