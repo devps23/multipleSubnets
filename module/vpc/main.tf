@@ -107,6 +107,17 @@ resource "aws_route_table" "mysql" {
     Name = "mysql-rt-${var.env}-${count.index}"
   }
 }
+resource "aws_route_table" "public" {
+  count = length(var.public_subnets)
+  vpc_id = aws_vpc.vpc.id
+  route {
+    cidr_block = var.default_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+  }
+  tags = {
+    Name = "public-rt-${var.env}-${count.index}"
+  }
+}
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id

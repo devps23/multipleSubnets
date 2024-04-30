@@ -117,5 +117,5 @@ to connect route_table(NAT) to multiple subnets,need association between nat gat
 2.create internet gateway
 3.peer connection for all subnets
 4.routing for all subnets
-5.
+5.create route table for all subnets
 
