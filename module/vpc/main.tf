@@ -65,7 +65,7 @@ resource "aws_vpc_peering_connection" "peer" {
   }
 }
 //create Internet Gateway
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
