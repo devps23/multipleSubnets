@@ -146,6 +146,12 @@ resource "aws_route_table_association" "backend" {
   route_table_id = aws_route_table.backend[count.index].id
 
 }
+resource "aws_route_table_association" "mysql" {
+  count          = length(var.mysql_subnet)
+  subnet_id      = aws_subnet.mysql[count.index].id
+  route_table_id = aws_route_table.mysql[count.index].id
+
+}
 
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
