@@ -146,6 +146,19 @@ resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public[count.index].id
 }
+resource "aws_nat_gateway" "example" {
+  allocation_id = aws_eip.eip.id
+  subnet_id = aws_subnet.frontend.id
+
+  tags = {
+    Name = "nat-${var.env}"
+  }
+}
+  resource "aws_eip" "eip" {
+   count = length(var.public_subnets)
+    domain   = "vpc"
+  }
+
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id
