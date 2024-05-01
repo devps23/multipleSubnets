@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "./module/vpc"
+  source = "./module/single_route"
   cidr_block = var.cidr_block
 //  subnet_cidr_block = var.subnet_cidr_block
   vpc_name = var.vpc_name
