@@ -17,8 +17,9 @@ resource "aws_vpc_peering_connection" "peer" {
   peer_vpc_id   = "vpc-02a94ee8944923438"
   vpc_id        = aws_vpc.vpc.id
 }
-//resource "aws_route" "r" {
-//  route_table_id            = aws_route_table.testing.id
-//  destination_cidr_block    = "10.0.1.0/22"
-//  vpc_peering_connection_id = "pcx-45ff3dc1"
-//}
+resource "aws_route" "default_route" {
+  route_table_id            = aws_vpc.vpc.main_route_table_id
+  destination_cidr_block    = "172.31.0.0/16"
+  vpc_peering_connection_id = "pcx-0d90eec12f8602793"
+}
+
