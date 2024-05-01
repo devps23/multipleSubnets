@@ -14,7 +14,7 @@ resource "aws_subnet" "subnet" {
   }
 }
 resource "aws_vpc_peering_connection" "peer" {
-  peer_vpc_id   = "pcx-00effd337b28a9d07"
+  peer_vpc_id   = "vpc-02a94ee8944923438"
   vpc_id        = aws_vpc.vpc.id
 }
 //resource "aws_route" "r" {
