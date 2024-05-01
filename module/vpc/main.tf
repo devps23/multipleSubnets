@@ -66,6 +66,14 @@ resource "aws_subnet" "public" {
     Name = "${var.env}-public-subnet-${count.index}"
   }
 }
+// create internet gateway
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id
