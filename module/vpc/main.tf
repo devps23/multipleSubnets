@@ -65,13 +65,28 @@ resource "aws_subnet" "public" {
   tags = {
     Name = "${var.env}-public-subnet-${count.index}"
   }
+
 }
+
+
 // create internet gateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
     Name = "${var.env}-igw"
+  }
+}
+// create route table
+resource "aws_route_table" "frontend" {
+  count = length(var.frontend_subnet)
+  vpc_id = aws_vpc.vpc.id
+  route {
+    cidr_block = var.default_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+  }
+    tags = {
+    Name = "example"
   }
 }
 //routing on both sides with customized peer connection
