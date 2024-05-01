@@ -148,9 +148,9 @@ resource "aws_route_table_association" "public" {
 }
 resource "aws_nat_gateway" "example" {
 //  connect to public subnets
-  allocation_id = aws_eip.eip[count.index].id
+  allocation_id = aws_eip.eip.id
 //  connect to private subnets
-  subnet_id = aws_subnet.frontend[count.index].id
+  subnet_id = aws_subnet.frontend.id
 
   tags = {
     Name = "nat-${var.env}-${count.index}"
