@@ -86,8 +86,14 @@ resource "aws_route_table" "frontend" {
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
     tags = {
-    Name = "frontend-rt-${var.env}"
+    Name = "frontend-rt-${var.env}-${count.index}"
   }
+}
+//associate subnet and route table
+resource "aws_route_table_association" "frontend" {
+  count = length(var.frontend_subnet)
+  subnet_id      = aws_subnet.frontend[count.index].id
+  route_table_id = aws_route_table.frontend[count.index].id
 }
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
