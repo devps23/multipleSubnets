@@ -110,12 +110,33 @@ resource "aws_route_table" "mysql" {
     Name = "mysql-rt-${var.env}-${count.index}"
   }
 }
+resource "aws_route_table" "public" {
+  count = length(var.public_subnets)
+  vpc_id = aws_vpc.vpc.id
+  route {
+    cidr_block = var.default_cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+  }
+  tags = {
+    Name = "public-rt-${var.env}-${count.index}"
+  }
+}
 //associate subnet and route table
-//resource "aws_route_table_association" "frontend" {
-//  count = length(var.frontend_subnet)
-//  subnet_id      = aws_subnet.frontend[count.index].id
-//  route_table_id = aws_route_table.frontend[count.index].id
-//}
+resource "aws_route_table_association" "frontend" {
+  count = length(var.frontend_subnet)
+  subnet_id      = aws_subnet.frontend[count.index].id
+  route_table_id = aws_route_table.frontend[count.index].id
+}
+resource "aws_route_table_association" "backend" {
+  count = length(var.backend_subnet)
+  subnet_id      = aws_subnet.backend[count.index].id
+  route_table_id = aws_route_table.backend[count.index].id
+}
+resource "aws_route_table_association" "mysql" {
+  count = length(var.mysql_subnet)
+  subnet_id      = aws_subnet.mysql[count.index].id
+  route_table_id = aws_route_table.mysql[count.index].id
+}
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id
