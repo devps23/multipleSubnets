@@ -153,7 +153,7 @@ resource "aws_nat_gateway" "example" {
   subnet_id = aws_subnet.frontend[count.index].id
 
   tags = {
-    Name = "nat-${var.env}"
+    Name = "nat-${var.env}-${count.index}"
   }
 }
   resource "aws_eip" "eip" {
