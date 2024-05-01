@@ -1,13 +1,13 @@
 //create a new vpc
 resource "aws_vpc" "vpc" {
-  cidr_block       = "10.0.0.32/16"
+  cidr_block       = "10.10.128.0/17"
   tags = {
     Name = "vpc-dev"
   }
 }
 resource "aws_subnet" "subnet" {
   vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.0.32/16"
+  cidr_block = "10.10.128.0/17"
 
   tags = {
     Name = "subnet-dev"
