@@ -120,3 +120,52 @@ to connect route_table(NAT) to multiple subnets,need association between nat gat
 5.create route table for all subnets
 6.connect route table with internet gateway
 
+
+aws_route:
+==========
+Provides a resource to create a routing table entry (a route) in a VPC routing table.
+create a routing table entry:to enter routing table(usually a route to a specific network)
+
+aws_route_table:
+================
+Provides a resource to create a VPC routing table.
+
+every subnet associate with route
+so when we create a new route in vpc ,so associate subnets to specific route to clear traffic
+
+aws_eip:
+========
+eip: elastic ip resource
+
+aws_nat_gateway:
+================
+The Allocation ID of the Elastic IP address for the NAT Gateway. Required for connectivity_type of public.
+* Provides a resource to create a VPC NAT Gateway.
+* allocation_id: means that gateway is under public subnets
+* subnet_id: means that nat gateway connects to private subnets
+
+aws_internet_gateway:
+=====================
+Provides a resource to create a VPC Internet Gateway.
+
+1.create a public subnets
+2.create a private subnets
+3.create an internet gateway
+4.create nat gateway
+5.create route table
+subnets associates to route .so aws_subnet_Associate required to associate route and subnets.
+5.public subnet connects to internet gateway
+6.private subnets connects to nat gateway
+7.need public ip address to connect nat gateway to subnets so that gateway connects to public ip address
+public ip address allocates to nat gateway.
+8.then nat gateway connects to subnets
+
+*public subnets should have internet gateway access
+so add internet gateway ip address
+* create nat gateway
+allo
+curl -fconfig.me
+
+
+
+
