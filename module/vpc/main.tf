@@ -4,16 +4,7 @@ resource "aws_vpc" "vpc" {
     Name = "${var.vpc_name} - ${var.env}"
   }
 }
-resource "aws_subnet" "public" {
-  count                = length(var.public_subnets)
-  vpc_id               = aws_vpc.vpc.id
-  cidr_block           = var.public_subnets[count.index]
-  availability_zone    = var.availability_zone[count.index]
 
-  tags = {
-    Name = "${var.env}-public-subnet-${count.index}"
-  }
-}
 //resource "aws_subnet" "subnet" {
 //  vpc_id     = aws_vpc.vpc.id
 //  cidr_block       = var.subnet_cidr_block
@@ -65,7 +56,16 @@ resource "aws_vpc_peering_connection" "peer" {
   }
 }
 
+resource "aws_subnet" "public" {
+  count                = length(var.public_subnets)
+  vpc_id               = aws_vpc.vpc.id
+  cidr_block           = var.public_subnets[count.index]
+  availability_zone    = var.availability_zone[count.index]
 
+  tags = {
+    Name = "${var.env}-public-subnet-${count.index}"
+  }
+}
 //routing on both sides with customized peer connection
 //resource "aws_route" "custom_vpc" {
 //  route_table_id            =  var.default_route_table_id
