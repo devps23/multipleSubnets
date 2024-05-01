@@ -146,13 +146,10 @@ resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public[count.index].id
 }
-resource "aws_nat_gateway" "example" {
-//  connect to public address
+resource "aws_nat_gateway" "nat" {
   count = length(var.public_subnets)
-  allocation_id = aws_eip.eip[count.index]
-//  connect to private subnets
+  allocation_id = aws_eip.eip[count.index].id
   subnet_id = aws_subnet.public[count.index].id
-
   tags = {
     Name = "nat-${var.env}-${count.index}"
   }
