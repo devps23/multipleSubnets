@@ -86,7 +86,7 @@ resource "aws_route_table" "frontend" {
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
     tags = {
-    Name = "example"
+    Name = "frontend-rt-${var.env}"
   }
 }
 //routing on both sides with customized peer connection
