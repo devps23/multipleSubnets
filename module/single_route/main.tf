@@ -21,5 +21,12 @@ resource "aws_route" "default_route" {
   route_table_id            = aws_vpc.vpc.main_route_table_id
   destination_cidr_block    = "172.31.0.0/16"
   vpc_peering_connection_id = "pcx-0d90eec12f8602793"
+
+}
+resource "aws_route" "custom_route" {
+  route_table_id            = "rtb-0a2e9ff93585c96fd"
+  destination_cidr_block    = "10.10.128.0/17"
+  vpc_peering_connection_id = "pcx-0d90eec12f8602793"
+
 }
 
