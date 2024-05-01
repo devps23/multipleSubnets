@@ -84,7 +84,12 @@ resource "aws_route_table" "frontend" {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
-    tags = {
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
+  tags = {
     Name = "frontend-rt-${var.env}-${count.index}"
   }
 }
@@ -95,6 +100,11 @@ resource "aws_route_table" "backend" {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
   tags = {
     Name = "backend-rt-${var.env}-${count.index}"
   }
@@ -106,6 +116,11 @@ resource "aws_route_table" "mysql" {
     cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
   tags = {
     Name = "mysql-rt-${var.env}-${count.index}"
   }
@@ -120,10 +135,6 @@ resource "aws_route_table" "public" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
-  }
-  route {
-    cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat.id
   }
 
   tags = {
