@@ -1,3 +1,5 @@
+Session:37
+===========
 what if VM goes down?
 If VM goes down then,what is the availability of application:(single server for each component)
 ==============================================================
