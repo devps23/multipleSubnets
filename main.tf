@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "./module/single_route"
+  source = "./module/vpc"
   cidr_block = var.cidr_block
 //  subnet_cidr_block = var.subnet_cidr_block
   vpc_name = var.vpc_name
@@ -11,6 +11,6 @@ module "vpc" {
   frontend_subnet = var.frontend-subnet
 //  backend_subnet = var.backend-subnet
 //  mysql_subnet = var.mysql-subnet
-//  availability_zone = var.availability_zone
+  availability_zone = var.availability_zone
 //  public_subnets = var.public_subnets
 }
