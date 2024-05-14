@@ -14,16 +14,16 @@ resource "aws_vpc" "vpc" {
 ////    Name = "zone"
 ////  }
 ////}
-//resource "aws_subnet" "frontend" {
-//  count                = length(var.frontend_subnet)
-//  vpc_id               = aws_vpc.vpc.id
-//  cidr_block           = var.frontend_subnet[count.index]
-//  availability_zone    = var.availability_zone[count.index]
-//
-//  tags = {
-//    Name = "${var.env}-frontend-subnet-${count.index}"
-//  }
-//}
+resource "aws_subnet" "frontend" {
+  count                = length(var.frontend_subnet)
+  vpc_id               = aws_vpc.vpc.id
+  cidr_block           = var.frontend_subnet[count.index]
+  availability_zone    = var.availability_zone[count.index]
+
+  tags = {
+    Name = "${var.env}-frontend-subnet-${count.index}"
+  }
+}
 //resource "aws_subnet" "backend" {
 //  count                = length(var.backend_subnet)
 //  vpc_id               = aws_vpc.vpc.id

@@ -9,5 +9,5 @@ variable "default_cidr_block" {}
 variable "frontend_subnet" {}
 //variable "backend_subnet" {}
 //variable "mysql_subnet"{}
-//variable "availability_zone" {}
+variable "availability_zone" {}
 //variable "public_subnets" {}
